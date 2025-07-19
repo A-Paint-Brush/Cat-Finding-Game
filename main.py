@@ -1,3 +1,4 @@
+from Path import get_path
 import pygame
 import pygame.mixer
 import random
@@ -28,11 +29,11 @@ class Main:
         self.cats_found = 0
         self.current_game = "Instructions"
         self.font1 = pygame.font.SysFont("Times New Roman", 18)
-        self.enter_full_screen_icon = pygame.image.load("Images\\Enter Fullscreen Icon.png")
-        self.exit_full_screen_icon = pygame.image.load("Images\\Exit Fullscreen Icon.png")
-        self.meow = pygame.mixer.Sound("Sounds\\Meow.wav")
-        self.connect = pygame.mixer.Sound("Sounds\\Connect.wav")
-        self.disconnect = pygame.mixer.Sound("Sounds\\Disconnect.wav")
+        self.enter_full_screen_icon = pygame.image.load(get_path("Images/Enter Fullscreen Icon.png"))
+        self.exit_full_screen_icon = pygame.image.load(get_path("Images/Exit Fullscreen Icon.png"))
+        self.meow = pygame.mixer.Sound(get_path("Sounds/Meow.wav"))
+        self.connect = pygame.mixer.Sound(get_path("Sounds/Connect.wav"))
+        self.disconnect = pygame.mixer.Sound(get_path("Sounds/Disconnect.wav"))
         self.clock = pygame.time.Clock()
         self.gameRun = True
         self.monitor_width = pygame.display.Info().current_w
@@ -177,20 +178,8 @@ class Main:
                                0.79027777777,
                                0.79027777777,
                                0.79027777777]
-        self.images = [pygame.transform.scale(pygame.image.load("Images\\1.png"), (44, 47)),
-                       pygame.transform.scale(pygame.image.load("Images\\2.png"), (44, 47)),
-                       pygame.transform.scale(pygame.image.load("Images\\3.png"), (44, 47)),
-                       pygame.transform.scale(pygame.image.load("Images\\4.png"), (44, 47)),
-                       pygame.transform.scale(pygame.image.load("Images\\5.png"), (44, 47)),
-                       pygame.transform.scale(pygame.image.load("Images\\6.png"), (44, 47)),
-                       pygame.transform.scale(pygame.image.load("Images\\7.png"), (44, 47)),
-                       pygame.transform.scale(pygame.image.load("Images\\8.png"), (44, 47)),
-                       pygame.transform.scale(pygame.image.load("Images\\9.png"), (44, 47)),
-                       pygame.transform.scale(pygame.image.load("Images\\10.png"), (44, 47)),
-                       pygame.transform.scale(pygame.image.load("Images\\11.png"), (44, 47)),
-                       pygame.transform.scale(pygame.image.load("Images\\12.png"), (44, 47)),
-                       pygame.transform.scale(pygame.image.load("Images\\13.png"), (44, 47)),
-                       pygame.transform.scale(pygame.image.load("Images\\14.png"), (44, 47))]
+        self.images = [pygame.transform.scale(pygame.image.load(get_path("Images/%d.png" % (i,))), (44, 47))
+                       for i in range(1, 14 + 1)]
         pygame.display.set_caption("Cat Finding Game")
         self.screen = pygame.display.set_mode((480, 360), pygame.RESIZABLE)
         while self.gameRun:
